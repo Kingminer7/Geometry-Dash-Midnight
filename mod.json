@@ -1,0 +1,28 @@
+{
+	"geode": "4.2.0",
+	"gd": {
+		"win": "2.2074",
+		"android": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074"
+	},
+	"id": "viper.geometry_dash_midnight",
+	"name": "Geometry Dash Midnight",
+	"version": "v1.0.0",
+	"developer": "Viper",
+	"dependencies": {
+		"km7dev.server_api": {
+			"version": ">=v1.0.0",
+			"importance": "required"
+		}
+	},
+	"resources": {
+		"spritesheets": {
+				"Midnight-logo": [
+					"MainLogoSheet/*.png"
+				]
+			}
+	},
+	"early-load": true,
+	"description": "Geometry Dash Midnight is a fan game with features and a custom gdps"
+}
