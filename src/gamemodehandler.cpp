@@ -171,15 +171,42 @@ class $modify(MIDNIGHTGarageLay, GJGarageLayer) {
 
 	void onBack(CCObject *sender) { GJGarageLayer::onBack(sender); }
 };
-/*
+
+
 #include <Geode/modify/GameObject.hpp>
 
-class EnhancedPortalGameObject : public EnhancedGameObject {
+class NEWEnhancedPortalGameObject : public EnhancedGameObject {
+	public:
+		static NEWEnhancedPortalGameObject* create() {
+				auto ret = new NEWEnhancedPortalGameObject;
+
+				if (ret && ret->init()) {
+					ret->autorelease();
+					return ret;
+				}
+
+				CC_SAFE_DELETE(ret);
+				return nullptr;
+			};
+	bool init(){
+		if (!EnhancedGameObject::init("ring_01_001.png")) {
+			return false;
+		};
+		return true;
+	}
 	virtual void activatedByPlayer(PlayerObject* p0) {
-		p0->toggleSwingMode(true,true);
+		if (p0) {
+			p0->toggleSwingMode(true,true);
+		}
 		log::debug("i've been touched?");
 	};
+	public:
+		void xd() {
+			log::debug("i've been touched?");
+		};
 };
+
+
 
 // new portal 7854001
 
@@ -187,8 +214,9 @@ class $modify(GameObjectNewObjects, GameObject) {
 	static GameObject* createWithKey(int p0) {
 		GameObject* obj;
 		if (p0 == 4395) {
-			obj = EnhancedPortalGameObject::createWithKey(660);
+			obj = NEWEnhancedPortalGameObject::create();
 			obj->setColor({0,0,0});
+			obj->m_objectID = 4395;
 		} else {
 			obj = GameObject::createWithKey(p0);
 		}
@@ -200,9 +228,11 @@ class $modify(GameObjectNewObjects, GameObject) {
 class $modify(PlayLayerMidNight, PlayLayer) {
 	void addObject(GameObject *obj) {
 		if (obj->m_objectID == 4395) {
-			obj->m_objectID = 660;
 			PlayLayer::addObject(obj);
-			obj->m_objectID = 4395;
+			if (typeinfo_cast<RingObject*>(obj)) {
+				log::debug("My object is a ring");
+			};
+			log::debug("La portal is {}",obj);
 			PlayLayerMidNight::AddCustomPortal(obj);
 		} else {
 			PlayLayer::addObject(obj);
@@ -239,7 +269,6 @@ class $modify(PlayerObjectMidNight, PlayerObject) {
 		case GameObjectType::BallPortal:
 			toggleFlyMode(false, false);
 			toggleBirdMode(false, false);
-			toggleRollMode(false, false);
 			toggleDartMode(false, false);
 			toggleRobotMode(false, false);
 			toggleSpiderMode(false, false);
@@ -249,7 +278,7 @@ class $modify(PlayerObjectMidNight, PlayerObject) {
 		case GameObjectType::WavePortal:
 			toggleFlyMode(false, false);
 			toggleBirdMode(false, false);
-			toggleDartMode(false, false);
+			toggleRollMode(false, false);
 			toggleRobotMode(false, false);
 			toggleSpiderMode(false, false);
 			toggleSwingMode(false, false);
@@ -260,7 +289,6 @@ class $modify(PlayerObjectMidNight, PlayerObject) {
 			toggleBirdMode(false, false);
 			toggleRollMode(false, false);
 			toggleDartMode(false, false);
-			toggleRobotMode(false, false);
 			toggleSpiderMode(false, false);
 			toggleSwingMode(false, false);
 			break;
@@ -270,7 +298,7 @@ class $modify(PlayerObjectMidNight, PlayerObject) {
 			toggleBirdMode(false, false);
 			toggleRollMode(false, false);
 			toggleDartMode(false, false);
-			toggleSpiderMode(false, false);
+			toggleRobotMode(false, false);
 			toggleSwingMode(false, false);
 			break;
 
@@ -288,4 +316,3 @@ class $modify(PlayerObjectMidNight, PlayerObject) {
 		};
 	};
 };
-*/
