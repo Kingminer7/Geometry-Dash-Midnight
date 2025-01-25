@@ -17,6 +17,9 @@
 		}
 	},
 	"resources": {
+		"sprites": [
+			"SingleTextures/**/*.png"
+		],
 		"spritesheets": {
 				"Midnight-logo": [
 					"MainLogoSheet/*.png"

@@ -173,6 +173,8 @@ class $modify(MIDNIGHTGarageLay, GJGarageLayer) {
 };
 
 
+//later me to sort out
+/*
 #include <Geode/modify/GameObject.hpp>
 
 class NEWEnhancedPortalGameObject : public EnhancedGameObject {
@@ -316,3 +318,4 @@ class $modify(PlayerObjectMidNight, PlayerObject) {
 		};
 	};
 };
+*/
