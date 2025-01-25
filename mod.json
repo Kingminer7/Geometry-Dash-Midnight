@@ -17,6 +17,13 @@
 		}
 	},
 	"resources": {
+		"files": [
+			"files/TexturePack/**/*.mp3",
+			"files/TexturePack/**/*.ogg",
+			"files/TexturePack/**/*.png",
+			"files/TexturePack/**/*.plist",
+			"files/TexturePack/**/*.fnt"
+		],
 		"sprites": [
 			"SingleTextures/**/*.png"
 		],

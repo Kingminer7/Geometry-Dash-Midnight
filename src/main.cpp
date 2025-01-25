@@ -14,7 +14,7 @@ class $modify(MenuGameLayerMidnightColors, MenuGameLayer) {
 		bool tweeningval = false;
 		int tweeningto = -3;
 	}; // 63 63 56
-	
+
 	bool init() {
 		if (!MenuGameLayer::init())
 			return false;
@@ -105,21 +105,47 @@ class $modify(MenuLayerLogo, MenuLayer) {
 		return true;
 	}
 };
+// load custom pack!
+$on_mod(Loaded) {
+	auto PackPath = geode::Mod::get()->getResourcesDir().string();
+	CCFileUtils::get()->addTexturePack(CCTexturePack{.m_id = Mod::get()->getID(), .m_paths = {PackPath}});
+}
 
 class $modify(LoadingLayerLogo, LoadingLayer) {
 	bool init(bool fromReload) {
+
 		if (!LoadingLayer::init(fromReload))
 			return false;
 
+		auto searchPathRoot = dirs::getModRuntimeDir() / Mod::get()->getID() / "resources";
+		CCFileUtils::sharedFileUtils()->addSearchPath(searchPathRoot.string().c_str());
+		std::vector<std::string> messages =
+		    {
+		        "Midnight, then why is it not Midnight?",
+		        "gode loaded!",
+		        "Thanks robtop!",
+		        "I LOVE GD COLONNNNNNN!",
+		        "Did eclipse update?",
+		        "Oops my game crashed!",
+		        "Go play Data after Data",
+		        "Hmm?",
+		        "HELP ME I'M LOCKED IN ROBTOP'S HOUSE",
+		    };
+
+		m_textArea->setString(messages.at(rand() % (messages.size() - 1)).c_str());
+
+		auto version = CCLabelBMFont::create(fmt::format("{}", Mod::get()->getVersion().toVString(true)).c_str(), "goldFont.fnt");
+		version->setPosition({5, 5});
+		version->setAnchorPoint({0, 0});
+		version->setScale(0.5f);
+		version->setOpacity(15);
+		this->addChild(version);
+
 		auto SFC = CCSpriteFrameCache::get();
 		auto TFC = CCTextureCache::get();
-
 		auto director = CCDirector::get();
 		auto winSize = director->getWinSize();
 		auto GM = GameManager::sharedState();
-
-		auto searchPathRoot = dirs::getModRuntimeDir() / Mod::get()->getID() / "resources";
-		CCFileUtils::sharedFileUtils()->addSearchPath(searchPathRoot.string().c_str());
 
 		SFC->addSpriteFramesWithFile("Midnight-logo.plist"_spr);
 		TFC->addImage("LogoGround.png"_spr, true);
@@ -130,10 +156,10 @@ class $modify(LoadingLayerLogo, LoadingLayer) {
 				Midnight::CovertLogo(Logoimg);
 			};
 
-		if (CCNode *BgTexture = this->getChildByID("bg-texture")) { 
-			CCSprite* Background = Midnight::CreateBg();
+		if (CCNode *BgTexture = this->getChildByID("bg-texture")) {
+			CCSprite *Background = Midnight::CreateBg();
 			this->addChild(Background);
-			CCSprite* BackgroundFiller = Midnight::CreateBg();
+			CCSprite *BackgroundFiller = Midnight::CreateBg();
 			BackgroundFiller->setPositionX(Background->getPositionX() + Background->getScaledContentWidth());
 			this->addChild(BackgroundFiller);
 			BgTexture->setVisible(false);
