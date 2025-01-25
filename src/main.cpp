@@ -119,20 +119,8 @@ class $modify(LoadingLayerLogo, LoadingLayer) {
 
 		auto searchPathRoot = dirs::getModRuntimeDir() / Mod::get()->getID() / "resources";
 		CCFileUtils::sharedFileUtils()->addSearchPath(searchPathRoot.string().c_str());
-		std::vector<std::string> messages =
-		    {
-		        "Midnight, then why is it not Midnight?",
-		        "gode loaded!",
-		        "Thanks robtop!",
-		        "I LOVE GD COLONNNNNNN!",
-		        "Did eclipse update?",
-		        "Oops my game crashed!",
-		        "Go play Data after Data",
-		        "Hmm?",
-		        "HELP ME I'M LOCKED IN ROBTOP'S HOUSE",
-		    };
 
-		m_textArea->setString(messages.at(rand() % (messages.size() - 1)).c_str());
+		m_textArea->setString(Midnight::LoadingMessages.at(rand() % (Midnight::LoadingMessages.size() - 1)).c_str());
 
 		auto version = CCLabelBMFont::create(fmt::format("{}", Mod::get()->getVersion().toVString(true)).c_str(), "goldFont.fnt");
 		version->setPosition({5, 5});

@@ -1,14 +1,25 @@
 #pragma once
 #include <km7dev.server_api/include/ServerAPIEvents.hpp>
 namespace Midnight {
+inline std::vector<std::string> LoadingMessages = {
+    "Midnight, then why is it not Midnight?",
+    "gode loaded!",
+    "Thanks robtop!",
+    "I LOVE GD COLONNNNNNN!",
+    "Did eclipse update?",
+    "Oops my game crashed!",
+    "Go play Data after Data",
+    "Hmm?",
+    "HELP ME I'M LOCKED IN ROBTOP'S HOUSE",
+};
 // bg helper functions
 struct bgHelper {
-	CCSprite* NewBG1;
-	CCSprite* NewBG2;
-	CCSprite* NewBG3;
-	CCSprite* NewBG4;
-	CCSprite* NewBG5;
-	CCSprite* NewBG6;
+	CCSprite *NewBG1;
+	CCSprite *NewBG2;
+	CCSprite *NewBG3;
+	CCSprite *NewBG4;
+	CCSprite *NewBG5;
+	CCSprite *NewBG6;
 };
 inline CCSprite *CreateBg() {
 	CCSprite *plahh = CCSprite::create("Background-logo.png"_spr);
